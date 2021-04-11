@@ -1,0 +1,109 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-12 col-md-1"></div>
+        <div class="col-12 col-md-3">
+            <div class="pt-1 ml-5">
+                <img alt="..." class="rounded" class="" src="{{seeuser.profile_pic.url}}" style="width: 150px; height: 150px;">
+            </div>
+        </div>
+        <div class="col-12 col-md-7">
+            <div class="card pt-1" style="min-height: 150px;">
+                <div class="card-body" style="position: relative;">
+                    <h5 class="card-title">{{seeuser.name}}</h5>
+                    {% if showeditbutton %}
+                    <div style="position: absolute; top: 3px;right: 3px;"><h3><a href="{% url 'name_editprofile' %}"><i class="fa fa-edit"></i></a>
+                    </h3></div>
+                    {% endif %}
+                    <p class="card-text">{{seeuser.about_me}}</p>
+                    <p class="card-text">Reputations: {{seeuser.reputation_score}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-1"></div>
+
+
+    <div class="row mt-2">
+        <div class="col-12 col-md-1"></div>
+        <div class="col-12 col-md-5 mb-2">
+            <h5>Questions({{userques.count}})</h5>
+            <hr>
+            <!-- <div style="display: flex;flex-direction: row;justify-content: end;">
+                <nav aria-label="">
+                    <ul class="pagination pagination-md">
+                      <li class="page-item active" aria-current="page">
+                        <span class="page-link">
+                          Newest
+                          <span class="sr-only">(current)</span>
+                        </span>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">Votes</a></li>
+                    </ul>
+                </nav>
+            </div> -->
+
+            <div>
+                {% for q in userques %}
+                <div class="mt-2">
+                    <a href="{% url 'name_questionsingle' q.pk %}">
+                        {% if q.votes > 0 %}
+                        <span class="badge badge-success"> {{q.votes}} </span>
+                        {% elif q.votes < 0 %}
+                        <span class="badge badge-danger"> {{q.votes}} </span>
+                        {% else %}
+                        <span class="badge badge-dark"> {{q.votes}} </span>
+                        {% endif %}
+                        {{q.title}}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="col-12 col-md-5">
+            <h5>Answers({{ansgiven.count}})</h5>
+            <hr>
+            <!-- <div style="display: flex;flex-direction: row;justify-content: end;">
+                <nav aria-label="">
+                    <ul class="pagination pagination-md">
+                      <li class="page-item active" aria-current="page">
+                        <span class="page-link">
+                          Newest
+                          <span class="sr-only">(current)</span>
+                        </span>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">Votes</a></li>
+                    </ul>
+                </nav>
+            </div> -->
+
+            <div>
+                {% for a in ansgiven %}
+                <div class="mt-2">
+                    <a href="{% url 'name_questionsingle' a.question_to_ans.pk %}">
+                        {% if a.votes > 0 %}
+                        <span class="badge badge-success"> {{a.votes}} </span>
+                        {% elif a.votes < 0 %}
+                        <span class="badge badge-danger"> {{a.votes}} </span>
+                        {% else %}
+                        <span class="badge badge-dark"> {{a.votes}} </span>
+                        {% endif %}
+                        {{a.question_to_ans.title}}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="col-12 col-md-1"></div>
+
+    </div>
+
+    {% endblock %}

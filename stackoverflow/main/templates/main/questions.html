@@ -1,0 +1,103 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<!-- main -->
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-2"></div>
+        <div class="col-12 col-md-8">
+
+
+            <!-- IMP -->
+            <div class="p-2" style="display: flex;justify-content: space-between;">
+                <h2><b>Questions</b></h2>
+                <button class="btn btn-primary btn-sm" onclick="location.href='{% url 'name_askquestion' %}'" type="submit">
+                    질문하기
+                </button>
+            </div>
+
+            <!-- Filter -->
+            <div style="display: flex;flex-direction: row;justify-content: end;">
+                <nav aria-label="">
+                    <ul class="pagination pagination-md">
+
+                        <li class="page-item {% if marked == 'latest' %} active{% endif %}"><a class="page-link" href="?q=latest">Latest</a></li>
+                        <li class="page-item {% if marked == 'mostviewed' %} active{% endif %}"><a class="page-link" href="?q=mostviewed">Most
+                            viewed</a></li>
+                        <li class="page-item {% if marked == 'unanswered' %} active{% endif %}"><a class="page-link"
+                                                                                                   href="?q=unanswered">Unanswered</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation example">
+                {% if all_questions.has_other_pages %}
+                <ul class="pagination">
+                    {% if all_questions.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ all_questions.previous_page_number }}&q={{marked}}">&laquo;</a></li>
+                    {% else %}
+                    <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                    {% endif %}
+                    {% for i in all_questions.paginator.page_range %}
+                    {% if all_questions.number == i %}
+                    <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}&q={{marked}}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if all_questions.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ all_questions.next_page_number }}&q={{marked}}">&raquo;</a></li>
+                    {% else %}
+                    <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </nav>
+
+            {% for q in all_questions %}
+            <div class="row mt-2">
+
+                <div class="col-12 col-md-4">
+
+                    <div class="text-center" style="height:120px;display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                        <div style="flex: 0.33;">{{q.upvotes.all.count}}<br>좋아요</div>
+                        <div style="flex: 0.33;">{{q.answers.all.count}}<br>답변</div>
+                        <div style="flex: 0.34;">{{q.views}}<br>조회</div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="mb-2" style="max-height: 70px;overflow: hidden;">
+                        <a href="{% url 'name_questionsingle' q.pk %}">{{q.title}}</a>
+                    </div>
+
+                    <div class="mb-2" style="max-height: 40px;overflow: hidden;">
+                        {% for t in q.tags.all %}
+                        <button class="btn btn-primary btn-sm" onclick="location.href = '/tag/{{t.tag_word}}'">{{t.tag_word}}</button>
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;align-items:flex-end; flex-direction: column;">
+                <small>Asked on <strong> {{q.created_at}} by <a
+                        href="{% url 'name_profile' q.author.username %}">{{q.author.name}}</a></strong></small>
+            </div>
+
+            <hr>
+            {% endfor %}
+        </div>
+        <div class="col-12 col-md-2"></div>
+    </div>
+</div>
+<!-- <script>
+  function myFunction(clicked_object) {
+    let url = clicked_object.getAttribute('data')
+    window.location.href = url
+  }
+</script> -->
+{% endblock %}
+

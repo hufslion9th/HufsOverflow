@@ -1,0 +1,128 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row flex-lg-nowrap">
+        <script>
+            function chooseFile() {
+                $("#fileInput").click();
+            }
+        </script>
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <div class="col">
+                <div class="row">
+                    <div class="col mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="e-profile">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-auto mb-3">
+                                            <div class="mx-auto" style="width: 140px;">
+                                                <div class="d-flex justify-content-center align-items-center rounded"
+                                                     style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                    <img src="{{user.profile_pic.url}}" style="width: 100%;height: auto;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.name}}</h4>
+                                                <p class="mb-0">@{{user.username}}</p>
+                                                <div class="text-muted"><small>Last seen {{user.last_login}}</small></div>
+                                                <div class="mt-2">
+
+                                                    <div>
+                                                        <i class="fa fa-fw fa-camera"></i>
+                                                        <input id="fileInput" name="fileInput" type="file"/>
+                                                    </div>
+                                                    <!-- <button onclick="chooseFile();" class="btn btn-primary" >
+
+                                                      <span>Change Photo</span>
+                                                    </button> -->
+
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-sm-right">
+                                                <div class="text-muted"><small>Joined on {{user.date_joined}}</small></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item"><a class="active nav-link" href="">설정</a></li>
+                                    </ul>
+                                    <div class="tab-content pt-3">
+                                        <div class="tab-pane active">
+                                            <form class="form" novalidate="">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>First Name</label>
+                                                                    <input class="form-control" name='firstname' name="name" placeholder="full name"
+                                                                           type="text" value="{{user.first_name}}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Last Name</label>
+                                                                    <input class="form-control" name='lastname' name="username" placeholder="username"
+                                                                           type="text" value="{{user.last_name}}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col mb-3">
+                                                                <div class="form-group">
+                                                                    <label>자기소개</label>
+                                                                    <textarea class="form-control" name='about' placeholder="{{user.about_me}}"
+                                                                              rows="5" value="{{user.about_me}}"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col d-flex justify-content-end">
+                                                        <button class="btn btn-primary" type="submit">변경사항 저장</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3 mb-3">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="px-xl-3">
+                                    <button class="btn btn-block btn-secondary" onclick="location.href='{% url 'name_logout_req' %}'">
+                                        <i class="fa fa-sign-out"></i>
+                                        <span>Logout</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title font-weight-bold">Support</h6>
+                                <p class="card-text">도움이 필요하면 아래 버튼을 클릭해주세요.</p>
+                                <button class="btn btn-primary" onclick="window.open('https://github.com/yw9142','_blank')" type="button">Contact
+                                    Us
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
