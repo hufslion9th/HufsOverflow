@@ -7,9 +7,9 @@
 
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[![](https://img.shields.io/badge/Made_with-Django-blue?style=for-the-badge&logo=Django)](https://www.djangoproject.com/)
 &emsp;
-[![](https://img.shields.io/badge/Made_with-sqlite3-blue?style=for-the-badge&logo=SQLite)](https://docs.python.org/2/library/sqlite3.html)
+[![](https://img.shields.io/badge/Made_with-postgreSQL-informational?style=for-the-badge&logo=postgreSQL)](https://www.postgresql.org/)
 &emsp;
-[![](https://img.shields.io/badge/IDE-Visual_Studio_Code-blue?style=for-the-badge&logo=visual-studio-code)](https://code.visualstudio.com/ "Visual Studio Code")
+[![](https://img.shields.io/badge/IDE-pycharm-green?style=for-the-badge&logo=pycharm)](https://www.jetbrains.com/ko-kr/pycharm/features/ "Pycharm")
 
 
 <h2 align='center'> About </h2>
