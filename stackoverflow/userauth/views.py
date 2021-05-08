@@ -26,7 +26,7 @@ def signup(request):
             user.save()
 
             current_site = get_current_site(request)
-            mail_subject = "Activate your Stackoberflow account."
+            mail_subject = "Activate your HufsOverflow account."
             message = render_to_string(
                 "userauth/user_active_email.html",
                 {
