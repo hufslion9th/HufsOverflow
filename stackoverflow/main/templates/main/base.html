@@ -94,6 +94,7 @@
 
             {% if user.is_authenticated %}
             <a class="nav-item nav-link" href="{% url 'name_profile' user.username %}"><strong>Profile</strong></a>
+            <a class="nav-item nav-link" href="{% url 'rule' %}"><strong>운영규칙</strong></a>
             <a class="nav-item nav-link" href="{% url 'name_logout_req' %}"><strong>로그아웃</strong></a>
             {% else %}
             <a class="nav-item nav-link" href="{% url 'name_login_req' %}"><strong>로그인</strong></a>
