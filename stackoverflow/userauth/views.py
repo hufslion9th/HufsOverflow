@@ -13,10 +13,11 @@ from django.urls import reverse
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
+from django.views.decorators.csrf import csrf_exempt
 
 User = get_user_model()
 
-
+@csrf_exempt
 def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -85,7 +86,7 @@ def logout_request(request):
     messages.info(request, "성공적으로 로그아웃 되었습니다!")
     return redirect("/")
 
-
+@csrf_exempt
 def login_request(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
