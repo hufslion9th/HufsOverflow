@@ -219,3 +219,6 @@ def is_accepted(request, pk, pk2):
         "main/question-single.html",
         {"q": q, "all_answers": all_answers, "showaccept": showaccept},
     )
+def rule(request):
+    return render(request,"main/rule.html")
+
