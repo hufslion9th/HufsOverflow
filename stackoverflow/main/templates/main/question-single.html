@@ -156,8 +156,10 @@
 
                     {% endfor %}
                 </div>
-                <hr>
 
+                <!-- 비로그인 유저에게 열람 제한 -->
+                {% if request.user.is_authenticated %}
+                <hr>
                 <!-- Answer Box editor -->
                 <div class="m-2" style="overflow-x: scroll;">
                     <h3><strong>Your Answer</strong></h3>
@@ -170,6 +172,7 @@
                         <button class="btn btn-primary mt-1" type="submit">답변 등록하기</button>
                     </form>
                 </div>
+                {% endif %}
 
             </div>
 
