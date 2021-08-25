@@ -17,22 +17,16 @@
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4"><strong>로그인</strong></legend>
-            {{ form|crispy }}
+            <legend class="border-bottom mb-4"><strong>ID 찾기</strong></legend>
+            <input type="email" class="form-control" name="email">
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">로그인</button>
+            <button class="btn btn-outline-info" type="submit">다음</button>
         </div>
     </form>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Need An Account? <a class="ml-2" href="{% url 'name_signup' %}">회원가입하기</a>
-        </small>
-    </div>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Forgot your ID? <a class="ml-2" href="{% url 'find_id' %}">ID 찾기</a><br>
-            Forgot your password? <a class="ml-2" href="{% url 'reset_password' %}">비밀번호 찾기</a>
+            가입시 입력한 이메일을 입력해주세요.
         </small>
     </div>
 </div>

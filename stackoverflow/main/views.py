@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Tags, Questions, Answer,Notice
+from .models import Tags, Questions, Answer, Notice
 from userauth.models import StackoverflowUser
 from django.db import transaction
 from django.db.models import Count, Q
@@ -41,7 +41,7 @@ def questions(request):
     )
 
 
-@login_required
+# @login_required
 def questionsingle(request, pk):
     # user = StackoverflowUser.objects.get(pk=1)
     user = request.user
@@ -219,7 +219,8 @@ def is_accepted(request, pk, pk2):
         "main/question-single.html",
         {"q": q, "all_answers": all_answers, "showaccept": showaccept},
     )
-def notice(request):
-    notices=Notice.objects.all()
-    return render(request,"main/notice.html",{"notices":notices})
 
+
+def notice(request):
+    notices = Notice.objects.all()
+    return render(request, "main/notice.html", {"notices": notices})
