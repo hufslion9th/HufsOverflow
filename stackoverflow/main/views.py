@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Tags, Questions, Answer
+from .models import Tags, Questions, Answer,Notice
 from userauth.models import StackoverflowUser
 from django.db import transaction
 from django.db.models import Count, Q
@@ -219,8 +219,9 @@ def is_accepted(request, pk, pk2):
         "main/question-single.html",
         {"q": q, "all_answers": all_answers, "showaccept": showaccept},
     )
-def rule(request):
-    return render(request,"main/rule.html")
+def notice(request):
+    notices=Notice.objects.all()
+    return render(request,"main/notice.html",{"notices":notices})
 
 def searchResult(request):
     questions = None

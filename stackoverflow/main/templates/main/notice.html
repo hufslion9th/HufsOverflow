@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<hr>
+<dir style=text-align: center>
+{% for notice in notices %}
+<h3>{{notice.id}}.{{notice.title}}</h3>
+{{notice.content}}
+<br><hr>
+{% endfor %}
+</dir>
+{% endblock %}
