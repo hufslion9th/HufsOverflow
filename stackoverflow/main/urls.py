@@ -13,6 +13,7 @@ urlpatterns = [
     path("profile/<str:username>/", views.profile, name="name_profile"),
     path("question/<int:pk>/<int:pk2>/", views.is_accepted, name="name_is_accepted"),
     path("rule/",views.rule,name="rule"),
+    path("searchResult/", views.searchResult, name='searchResult'),
 ]
 
 if settings.DEBUG:
