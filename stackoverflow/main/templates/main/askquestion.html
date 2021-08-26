@@ -31,9 +31,23 @@
                         <hr class="invis">
                         <h5 class="card-title">내용</h5>
                         <p class="card-text">누군가가 귀하의 질문에 답하는 데 필요한 모든 정보를 포함하십시오.</p>
-                        <textarea name="queseditor"></textarea>
+
+                        <textarea id="editor" name="queseditor"></textarea>
                         <script>
-                            CKEDITOR.replace('queseditor');
+                            ClassicEditor
+                                .create( document.querySelector('#editor'), {
+                                    codeBlock: {
+                                        languages: [
+                                            { language: 'python', label: 'Python' }
+                                        ]
+                                    }
+                                } )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                    console.error( error );
+                                } );
                         </script>
                         <hr class="invis">
                         <h5 class="card-title">Tags</h5>
@@ -47,10 +61,24 @@
 
                         <div id="wans" style="display: none">
                             <h5 class="card-title">Your Answer</h5>
-                            <textarea name="selfanswereditor"></textarea>
+                            <textarea id="editor-self" name="selfanswereditor"></textarea>
                             <script>
-                                CKEDITOR.replace('selfanswereditor');
+                                ClassicEditor
+                                    .create( document.querySelector('#editor-self'), {
+                                        codeBlock: {
+                                            languages: [
+                                                { language: 'python', label: 'Python' }
+                                            ]
+                                        }
+                                    } )
+                                    .then( editor => {
+                                            console.log( editor );
+                                    } )
+                                    .catch( error => {
+                                        console.error( error );
+                                    } );
                             </script>
+
                             <hr class="invis">
                         </div>
 
