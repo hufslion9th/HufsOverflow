@@ -223,3 +223,11 @@ def notice(request):
     notices=Notice.objects.all()
     return render(request,"main/notice.html",{"notices":notices})
 
+def searchResult(request):
+    questions = None
+    query = None
+    if 'q' in request.GET:
+        query = request.GET.get('q')
+        questions = Questions.objects.all().filter(Q(title__contains=query) | Q(ques_content__contains=query))
+    
+    return render(request, 'main/search.html', {'query':query, 'questions':questions})
