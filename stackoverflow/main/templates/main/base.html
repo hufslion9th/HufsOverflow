@@ -70,6 +70,15 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="{% url 'name_questions' %}">HufsOverflow</a>
+    <form class="navbar-form pull-left" role="search" style="width:250px;" action="{% url 'searchResult' %}" method="GET">
+        {% csrf_token %}
+        <div class="input-group">
+           <input type="text" class="form-control" placeholder="검색" name="q">
+           <div class="input-group-btn">
+              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+           </div>
+        </div>
+    </form>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -83,8 +92,8 @@
                   </form>
             </li> -->
         </ul>
+        
         <div class="navbar-nav">
-
             <div class="custom-control custom-switch" style="display: flex;justify-content: start;align-items: center;">
                 <div>
                     <input class="custom-control-input" id="customSwitch1" onchange="comeToTheDarkside()" type="checkbox">
