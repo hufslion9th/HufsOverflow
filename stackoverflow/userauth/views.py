@@ -17,6 +17,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 User = get_user_model()
 
+
 @csrf_exempt
 def signup(request):
     if request.method == "POST":
@@ -86,6 +87,7 @@ def logout_request(request):
     messages.info(request, "성공적으로 로그아웃 되었습니다!")
     return redirect("/")
 
+
 @csrf_exempt
 def login_request(request):
     if request.method == "POST":
@@ -126,3 +128,19 @@ def activate(request, uidb64, token):
     else:
         messages.error(request, "Activation link is invalid!")
         return redirect("name_login_req")
+
+
+def find_id(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        try:
+            user = User.objects.get(email=email)
+            if user is not None:
+                email_subject = "HufsOverflow 아이디 확인"
+                email_message = f"가입하신 계정의 ID는 {str(user.username)}입니다."
+                send_email = EmailMessage(email_subject, email_message, to=[email])
+                send_email.send(fail_silently=False)
+                return render(request, "userauth/ID_email_send.html")
+        except:
+            messages.info(request, "잘못된 이메일이거나 가입된 계정 정보가 없습니다.")
+    return render(request, "userauth/ID_find.html")
